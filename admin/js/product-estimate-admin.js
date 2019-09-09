@@ -30,12 +30,12 @@
 	 */
 
 	$(document).ready(function() {
-		$('#estimate').DataTable( {
+		$('#leave').DataTable( {
 			"order": [[ 3, "desc" ]]
 		} );
 	} );
 
-	$(document).on('click', '.estimateDelete', function (e) {
+	$(document).on('click', '.leaveDelete', function (e) {
 		e.preventDefault();
 		// var userId = $('#userId').val(); 
 		var id = $(this).attr("data-id");
@@ -43,9 +43,9 @@
 		var $tr = $(this).closest('tr');
   
 		var data = {
-		  'action': 'estimate_delete',
+		  'action': 'leave_delete',
 		  'nonce': nonce,
-		  'estimateId': id,
+		  'leaveId': id,
 		};
 		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 		jQuery.post(ajax_object.ajax_url, data, function (response) {

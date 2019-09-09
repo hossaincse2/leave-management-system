@@ -10,10 +10,10 @@
  *
  * @link              http://example.com
  * @since             1.0.0
- * @package           Product_Estimate
+ * @package           leave_management
  *
  * @wordpress-plugin
- * Plugin Name:       Nybsys Product Estimate
+ * Plugin Name:       Leave Management System
  * Plugin URI:        http://example.com/plugin-name-uri/
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
@@ -21,7 +21,7 @@
  * Author URI:        http://example.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       product_estimate
+ * Text Domain:       leave_management
  * Domain Path:       /languages
  */
 
@@ -35,28 +35,28 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'product_estimate_VERSION', '1.0.0' );
+define( 'leave_management_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-plugin-name-activator.php
  */
-function activate_product_estimate() {
+function activate_leave_management() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-activator.php';
-	product_estimate_Activator::activate();
+	leave_management_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-plugin-name-deactivator.php
  */
-function deactivate_product_estimate() {
+function deactivate_leave_management() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-deactivator.php';
-	product_estimate_Deactivator::deactivate();
+	leave_management_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_product_estimate' );
-register_deactivation_hook( __FILE__, 'deactivate_product_estimate' );
+register_activation_hook( __FILE__, 'activate_leave_management' );
+register_deactivation_hook( __FILE__, 'deactivate_leave_management' );
 
 
 /**
@@ -74,10 +74,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name.php';
  *
  * @since    1.0.0
  */
-function run_product_estimate() {
+function run_leave_management() {
 
-	$plugin = new product_estimate();
+	$plugin = new leave_management();
 	$plugin->run();
 
 }
-run_product_estimate();
+run_leave_management();

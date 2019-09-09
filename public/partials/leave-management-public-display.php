@@ -8,8 +8,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    product_estimate
- * @subpackage product_estimate/public/partials
+ * @package    product_leave
+ * @subpackage product_leave/public/partials
  */
 ?>
 

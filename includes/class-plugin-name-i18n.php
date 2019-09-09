@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    product_estimate
- * @subpackage product_estimate/includes
+ * @package    leave_management
+ * @subpackage leave_management/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    product_estimate
- * @subpackage product_estimate/includes
+ * @package    leave_management
+ * @subpackage leave_management/includes
  * @author     Your Name <email@example.com>
  */
-class product_estimate_i18n {
+class leave_management_i18n {
 
 
 	/**

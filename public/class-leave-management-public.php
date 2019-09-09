@@ -7,8 +7,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    product_estimate
- * @subpackage product_estimate/public
+ * @package    leave_management
+ * @subpackage leave_management/public
  */
 
 /**
@@ -17,20 +17,20 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    product_estimate
- * @subpackage product_estimate/public
+ * @package    leave_management
+ * @subpackage leave_management/public
  * @author     Your Name <email@example.com>
  */
-class product_estimate_Public {
+class Leave_Management_Public {
 
 	/**
 	 * The ID of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $product_estimate    The ID of this plugin.
+	 * @var      string    $leave_management    The ID of this plugin.
 	 */
-	private $product_estimate;
+	private $leave_management;
 
 	/**
 	 * The version of this plugin.
@@ -45,12 +45,12 @@ class product_estimate_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $product_estimate       The name of the plugin.
+	 * @param      string    $leave_management       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $product_estimate, $version ) {
+	public function __construct( $leave_management, $version ) {
 
-		$this->product_estimate = $product_estimate;
+		$this->leave_management = $leave_management;
 		$this->version = $version;
 
 	}
@@ -66,15 +66,15 @@ class product_estimate_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in product_estimate_Loader as all of the hooks are defined
+		 * defined in leave_management_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The product_estimate_Loader will then create the relationship
+		 * The leave_management_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->product_estimate, plugin_dir_url( __FILE__ ) . 'css/product-estimate-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->leave_management, plugin_dir_url( __FILE__ ) . 'css/product-leave-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -89,16 +89,16 @@ class product_estimate_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in product_estimate_Loader as all of the hooks are defined
+		 * defined in leave_management_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The product_estimate_Loader will then create the relationship
+		 * The leave_management_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->product_estimate, plugin_dir_url( __FILE__ ) . 'js/plugin-name-public.js', array( 'jquery' ), $this->version, false ); 
-		wp_localize_script( $this->product_estimate, 'ajax_object',
+		wp_enqueue_script( $this->leave_management, plugin_dir_url( __FILE__ ) . 'js/plugin-name-public.js', array( 'jquery' ), $this->version, false ); 
+		wp_localize_script( $this->leave_management, 'ajax_object',
             array( 'ajax_url' => admin_url( 'admin-ajax.php' )));
 	}
 
@@ -112,14 +112,14 @@ class product_estimate_Public {
 	public function pluginUrl (){
 		?>
 	 <script type="text/javascript">
-		var plugin_url = '<?php echo plugin_dir_url('').'/' .$this->product_estimate; ?>';
+		var plugin_url = '<?php echo plugin_dir_url('').'/' .$this->leave_management; ?>';
 	  </script>
 		<?php
 	}
 
 	public function get_device_list(){
 
-	$category =  get_option( 'estimate_category1' );
+	$category =  get_option( 'leave_category1' );
 
 	$args = array(
         'post_type'      => 'product',
@@ -131,13 +131,13 @@ class product_estimate_Public {
 
     while ( $loop->have_posts() ) : $loop->the_post();
 				global $product;
-				if(isset($_GET['estimate-id'])){
-					echo '<a data-id="'.get_the_ID().'" data-estimateId = "'.$_GET['estimate-id'].'" class="add_list cart-add-btn list-group-item list-group-item-action bg-light" href="#">'.get_the_title().' <span class="btn-show-hover">Add</span></a>';
+				if(isset($_GET['leave-id'])){
+					echo '<a data-id="'.get_the_ID().'" data-leaveId = "'.$_GET['leave-id'].'" class="add_list cart-add-btn list-group-item list-group-item-action bg-light" href="#">'.get_the_title().' <span class="btn-show-hover">Add</span></a>';
 				}else{
-					echo '<a data-id="'.get_the_ID().'" data-estimateId = "'.$_GET['estimate-id'].'" class="cart-add-btn list-group-item list-group-item-action bg-light" href="#">'.get_the_title().'</a>';
+					echo '<a data-id="'.get_the_ID().'" data-leaveId = "'.$_GET['leave-id'].'" class="cart-add-btn list-group-item list-group-item-action bg-light" href="#">'.get_the_title().'</a>';
 				}
         // echo '<a class="cart-add-btn list-group-item list-group-item-action bg-light" href="'.home_url().'?add-to-cart='.get_the_ID().'">'.get_the_title().' <span class="btn-show-hover">Add</span></a>';
-        //echo '<a data-id="'.get_the_ID().'" data-estimateId = "'.$_GET['estimate-id'].'" class="add_list cart-add-btn list-group-item list-group-item-action bg-light" href="#">'.get_the_title().' <span class="btn-show-hover">Add</span></a>';
+        //echo '<a data-id="'.get_the_ID().'" data-leaveId = "'.$_GET['leave-id'].'" class="add_list cart-add-btn list-group-item list-group-item-action bg-light" href="#">'.get_the_title().' <span class="btn-show-hover">Add</span></a>';
     endwhile;
 
     wp_reset_query();
@@ -146,7 +146,7 @@ class product_estimate_Public {
 
 public function get_sensore_list(){
 
-	$category =  get_option( 'estimate_category2' );
+	$category =  get_option( 'leave_category2' );
 
 	$taxonomy = 'product_cat';
 	$orderby = 'name';
@@ -204,10 +204,10 @@ public function get_sensore_list(){
 					// print_r($product);
 					// echo do_shortcode('[add_to_cart id="94"]');
 					// echo '<a class="cart-add-btn list-group-item list-group-item-action bg-light" href="'.home_url().'?add-to-cart='.get_the_ID().'">'.get_the_title().' <span class="btn-show-hover">Add</span></a>';
-					if(isset($_GET['estimate-id'])){
-						echo '<a data-id="'.get_the_ID().'" data-estimateId = "'.$_GET['estimate-id'].'" class="add_list cart-add-btn list-group-item list-group-item-action bg-light" href="#">'.get_the_title().' <span class="btn-show-hover">Add</span></a>';
+					if(isset($_GET['leave-id'])){
+						echo '<a data-id="'.get_the_ID().'" data-leaveId = "'.$_GET['leave-id'].'" class="add_list cart-add-btn list-group-item list-group-item-action bg-light" href="#">'.get_the_title().' <span class="btn-show-hover">Add</span></a>';
 					}else{
-						echo '<a data-id="'.get_the_ID().'" data-estimateId = "'.$_GET['estimate-id'].'" class="cart-add-btn list-group-item list-group-item-action bg-light" href="#">'.get_the_title().'</a>';
+						echo '<a data-id="'.get_the_ID().'" data-leaveId = "'.$_GET['leave-id'].'" class="cart-add-btn list-group-item list-group-item-action bg-light" href="#">'.get_the_title().'</a>';
 					}
 
 					endwhile;
@@ -228,35 +228,35 @@ public function get_sensore_list(){
 	 
 } 
 
-public static function get_all_estimate_for_shortCode($limit){
+public static function get_all_leave_for_shortCode($limit){
 	global $wpdb;
     $current_user = get_current_user_id();
-	$tablename = $wpdb->prefix . "estimate";
-	$ls_estimate = $wpdb->get_results("SELECT * FROM $tablename WHERE  user_id = '$current_user' LIMIT $limit");
+	$tablename = $wpdb->prefix . "leave";
+	$ls_leave = $wpdb->get_results("SELECT * FROM $tablename WHERE  user_id = '$current_user' LIMIT $limit");
   	 
- 	return $ls_estimate;
+ 	return $ls_leave;
 }
-public static function get_all_estimate(){
+public static function get_all_leave(){
 	global $wpdb;
     $current_user = get_current_user_id();
-	$tablename = $wpdb->prefix . "estimate";
-	$ls_estimate = $wpdb->get_results("SELECT * FROM $tablename WHERE  user_id = '$current_user'");
+	$tablename = $wpdb->prefix . "leave";
+	$ls_leave = $wpdb->get_results("SELECT * FROM $tablename WHERE  user_id = '$current_user'");
   	 
- 	return $ls_estimate;
+ 	return $ls_leave;
 }
 
-public static function get_details_estimate($estimateId){
+public static function get_details_leave($leaveId){
 	global $wpdb;
 	$current_user = get_current_user_id();
-	$tablename = $wpdb->prefix . "estimate";
-	$ls_estimate = $wpdb->get_results("SELECT * FROM $tablename WHERE  user_id = '$current_user' AND id= '$estimateId'");
+	$tablename = $wpdb->prefix . "leave";
+	$ls_leave = $wpdb->get_results("SELECT * FROM $tablename WHERE  user_id = '$current_user' AND id= '$leaveId'");
   	 
- 	return $ls_estimate;
+ 	return $ls_leave;
 }
 
 
 
-// public function delete_estimate(){
+// public function delete_leave(){
 
 // 	$nonce =  isset($_REQUEST['_wpnonce']) ? $_REQUEST['_wpnonce'] : '';
 // 	 $id =  isset($_REQUEST['id']) ? $_REQUEST['id'] : '';
@@ -297,34 +297,34 @@ public static function get_details_estimate($estimateId){
 // 	}
 // } 
 
-public static function allGetProducts($estimateId){
+public static function allGetProducts($leaveId){
 	global $wpdb;
-	$tablename = $wpdb->prefix . "estimate_products";
-	$sql = "Select * from $tablename Where estimate_id = '$estimateId'  Group By product_id Order by id ASC";
+	$tablename = $wpdb->prefix . "leave_products";
+	$sql = "Select * from $tablename Where leave_id = '$leaveId'  Group By product_id Order by id ASC";
 	$values = $wpdb->get_results($sql,ARRAY_A);
 	return $values;
 }
-public static function getTotalQty($productId, $estimateId){
+public static function getTotalQty($productId, $leaveId){
 	global $wpdb;
-	$tablename = $wpdb->prefix . "estimate_products";
-	$sql = "SELECT product_id,SUM(qty) as totalQty FROM $tablename Where estimate_id = '$estimateId' and  product_id = $productId GROUP BY product_id;";
+	$tablename = $wpdb->prefix . "leave_products";
+	$sql = "SELECT product_id,SUM(qty) as totalQty FROM $tablename Where leave_id = '$leaveId' and  product_id = $productId GROUP BY product_id;";
 	$values = $wpdb->get_results($sql,ARRAY_A);
 	return $values;
 }
 
-public function estimate_redirect_users_by_role() {
+public function leave_redirect_users_by_role() {
 
 	$current_user   = wp_get_current_user();
 	$role_name      = $current_user->roles[0];
 	$return_url = esc_url( home_url( '/my-account/' ) );
-	if ( 'estimate-admin' === $role_name ) {
+	if ( 'leave-admin' === $role_name ) {
 		wp_redirect( $return_url );
 	} // if
 
 }
  
 
-public function estimate_user_nav_visibility() {
+public function leave_user_nav_visibility() {
 
     if ( is_user_logged_in() ) {
         $output="<style> .nav-login { display: none; } </style>";
@@ -335,9 +335,9 @@ public function estimate_user_nav_visibility() {
     echo $output;
 }
 
-function estimate_csv(){ 
+function leave_csv(){ 
 
-	if(isset($_GET['estimate-id'])  && isset($_GET['csv'])){
+	if(isset($_GET['leave-id'])  && isset($_GET['csv'])){
 		// Create new PHPExcel object
 		$objPHPExcel = new PHPExcel();
 

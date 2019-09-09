@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    product_estimate
- * @subpackage product_estimate/includes
+ * @package    leave_management
+ * @subpackage leave_management/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    product_estimate
- * @subpackage product_estimate/includes
+ * @package    leave_management
+ * @subpackage leave_management/includes
  * @author     Your Name <email@example.com>
  */
-class product_estimate_Deactivator {
+class leave_management_Deactivator {
 
 	/**
 	 * Short Description. (use period)
@@ -31,17 +31,17 @@ class product_estimate_Deactivator {
 	 */
 	public static function deactivate() {
 		global $wpdb;
-		$estimate =  $wpdb->prefix. 'estimate'; 
-		$estimate_products =  $wpdb->prefix. 'estimate_products';
+		$leave =  $wpdb->prefix. 'leave'; 
+		$leave_products =  $wpdb->prefix. 'leave_products';
 
-		// $wpdb->query( "DROP TABLE IF EXISTS $estimate" );
-		// $wpdb->query( "DROP TABLE IF EXISTS $estimate_products" );
-		// delete_option("product_estimate_db_version");
+		// $wpdb->query( "DROP TABLE IF EXISTS $leave" );
+		// $wpdb->query( "DROP TABLE IF EXISTS $leave_products" );
+		// delete_option("leave_management_db_version");
 		self::user_remove_role();
 	}
 
 	private static function	user_remove_role(){
-		remove_role( 'Estimate-admin' );
+		remove_role( 'leave-admin' );
 		remove_role( 'product-manager' );
 		remove_role( 'order-manager' );
 		remove_role( 'normal-user' );

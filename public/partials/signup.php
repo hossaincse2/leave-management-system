@@ -38,14 +38,14 @@ get_header();
 //			}
 			else {
 
-				$user_id = wp_insert_user( array ('first_name' => apply_filters('pre_user_first_name', $first_name), 'last_name' => apply_filters('pre_user_last_name', $last_name), 'user_pass' => apply_filters('pre_user_user_pass', $password1), 'user_login' => apply_filters('pre_user_user_login', $username), 'user_email' => apply_filters('pre_user_user_email', $email), 'role' => 'Estimate-admin' ) );
+				$user_id = wp_insert_user( array ('first_name' => apply_filters('pre_user_first_name', $first_name), 'last_name' => apply_filters('pre_user_last_name', $last_name), 'user_pass' => apply_filters('pre_user_user_pass', $password1), 'user_login' => apply_filters('pre_user_user_login', $username), 'user_email' => apply_filters('pre_user_user_email', $email), 'role' => 'leave-admin' ) );
 
 				if ($user_id){
 					add_user_meta( $user_id, 'company_name', $company_name);
                     add_user_meta( $user_id, 'mobile', $mobile);
 
                     // $u = new WP_User( $user_id ); 
-                    //  $u->set_role( 'estimate-admin' );
+                    //  $u->set_role( 'leave-admin' );
                 }
                 
                 

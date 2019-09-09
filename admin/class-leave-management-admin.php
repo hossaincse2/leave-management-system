@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    product_estimate
- * @subpackage product_estimate/admin
+ * @package    leave_managemente
+ * @subpackage leave_managemente/admin
  */
 
 /**
@@ -16,20 +16,20 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    product_estimate
- * @subpackage product_estimate/admin
+ * @package    leave_managemente
+ * @subpackage leave_managemente/admin
  * @author     Your Name <email@example.com>
  */
-class product_estimate_Admin {
+class Leave_Management_Admin {
 
 	/**
 	 * The ID of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $product_estimate    The ID of this plugin.
+	 * @var      string    $leave_managemente    The ID of this plugin.
 	 */
-	private $product_estimate;
+	private $leave_managemente;
 
 	/**
 	 * The version of this plugin.
@@ -44,12 +44,12 @@ class product_estimate_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $product_estimate       The name of this plugin.
+	 * @param      string    $leave_managemente       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $product_estimate, $version ) {
+	public function __construct( $leave_managemente, $version ) {
 
-		$this->product_estimate = $product_estimate;
+		$this->leave_managemente = $leave_managemente;
 		$this->version = $version;
 
 	}
@@ -65,15 +65,15 @@ class product_estimate_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in product_estimate_Loader as all of the hooks are defined
+		 * defined in leave_managemente_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The product_estimate_Loader will then create the relationship
+		 * The leave_managemente_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */ 
 		wp_enqueue_style('dataTable-style', 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css', array(), $this->version, 'all' );
-		wp_enqueue_style( $this->product_estimate, plugin_dir_url( __FILE__ ) . 'css/plugin-name-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->leave_managemente, plugin_dir_url( __FILE__ ) . 'css/plugin-name-admin.css', array(), $this->version, 'all' );
 		// Add the color picker css file
 		wp_enqueue_style( 'wp-color-picker' );
 		
@@ -90,17 +90,17 @@ class product_estimate_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in product_estimate_Loader as all of the hooks are defined
+		 * defined in leave_managemente_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The product_estimate_Loader will then create the relationship
+		 * The leave_managemente_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
 		wp_enqueue_script( 'dataTable-js','https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js', array( 'jquery' ), $this->version, false );
-		wp_enqueue_script( $this->product_estimate, plugin_dir_url( __FILE__ ) . 'js/product-estimate-admin.js', array( 'jquery' ), $this->version, false );
-		wp_localize_script( $this->product_estimate, 'ajax_object',
+		wp_enqueue_script( $this->leave_managemente, plugin_dir_url( __FILE__ ) . 'js/product-leave-admin.js', array( 'jquery' ), $this->version, false );
+		wp_localize_script( $this->leave_managemente, 'ajax_object',
 		array( 'ajax_url' => admin_url( 'admin-ajax.php' )));
 
 		wp_enqueue_script( 'wp-color-picker' );
@@ -109,26 +109,26 @@ class product_estimate_Admin {
 	/**
  * Register a custom menu page.
  */
-public function estimate_register_my_custom_menu_page(){
+public function leave_register_my_custom_menu_page(){
     add_menu_page( 
-        __( 'Product Estimate', 'product_estimate' ),
-        'Product Estimate',
+        __( 'Product leave', 'leave_managemente' ),
+        'Product leave',
         'manage_options',
-        'product-estimate',
-		 array($this,'product_estimate_menu_page'),
+        'product-leave',
+		 array($this,'leave_managemente_menu_page'),
 		'dashicons-admin-generic',
         // plugins_url( 'myplugin/images/icon.png' ),
         6
 	); 
 	
-	add_submenu_page('product-estimate', 'Settings', 'Settings',
-    'manage_options', 'settings', array($this,'product_estimate_settings_menu_page')); 
+	add_submenu_page('product-leave', 'Settings', 'Settings',
+    'manage_options', 'settings', array($this,'leave_managemente_settings_menu_page')); 
 }
 
 
 
 public function settings_custome_fileld_admin_init() {
-	return Estimate_Settings::register_settings_optings();
+	return leave_Settings::register_settings_optings();
 }
 
 function my_login_logo() { ?>
@@ -164,23 +164,23 @@ function remove_wp_logo( $wp_admin_bar ) {
 /**
  * Display a custom menu page
  */
-public function product_estimate_menu_page(){
- 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/product_estimate.php';
+public function leave_managemente_menu_page(){
+ 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/leave_managemente.php';
 }
 
-public function product_estimate_settings_menu_page(){
+public function leave_managemente_settings_menu_page(){
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/settings.php';
 }
 
 
 
-public static function get_all_estimate(){
+public static function get_all_leave(){
 	global $wpdb;
     // $current_user = get_current_user_id();
-	$tablename = $wpdb->prefix . "estimate";
-	$ls_estimate = $wpdb->get_results("SELECT * FROM $tablename ORDER BY id");
+	$tablename = $wpdb->prefix . "leave";
+	$ls_leave = $wpdb->get_results("SELECT * FROM $tablename ORDER BY id");
   	 
- 	return $ls_estimate;
+ 	return $ls_leave;
 }
 
 /**
@@ -208,7 +208,7 @@ public function wc_custom_user_redirect( $redirect, $user ) {
 	}elseif ( $role == 'author' ||  $role == 'order-manager' ) {
 	 //Redirect authors to the dashboard
 		$redirect = $dashboard;
-	}   elseif ( $role == 'Estimate-admin' || $role == 'subscriber' ) {
+	}   elseif ( $role == 'leave-admin' || $role == 'subscriber' ) {
 	//Redirect customers and subscribers to the "My Account" page
 	$redirect = $myaccount;
 	} else {
@@ -225,7 +225,7 @@ public function wc_custom_user_redirect( $redirect, $user ) {
  
 // add_filter( 'woocommerce_register_shop_order_post_statuses', 'bbloomer_register_custom_order_status' );
  
-function estimate_register_custom_order_status( $order_statuses ){
+function leave_register_custom_order_status( $order_statuses ){
      
     // Status must start with "wc-"
     $order_statuses['wc-order-received'] = array(                                            
@@ -252,7 +252,7 @@ function estimate_register_custom_order_status( $order_statuses ){
  
 // add_filter( 'wc_order_statuses', 'bbloomer_show_custom_order_status' );
  
-function estimate_show_custom_order_status( $order_statuses ) {    
+function leave_show_custom_order_status( $order_statuses ) {    
     $order_statuses['wc-order-received'] = _x( 'Order Received', 'Order status', 'woocommerce' );       
     $order_statuses['wc-payment-received'] = _x( 'Payment Received', 'Order status', 'woocommerce' );       
     return $order_statuses;
@@ -260,7 +260,7 @@ function estimate_show_custom_order_status( $order_statuses ) {
  
 // add_filter( 'bulk_actions-edit-shop_order', 'bbloomer_get_custom_order_status_bulk' );
  
-function estimate_get_custom_order_status_bulk( $bulk_actions ) {
+function leave_get_custom_order_status_bulk( $bulk_actions ) {
     // Note: "mark_" must be there instead of "wc"
 	$bulk_actions['mark_order-received'] = 'Change status to Order Received';
 	$bulk_actions['mark_payment-received'] = 'Change status to Payment Received';
@@ -274,7 +274,7 @@ function estimate_get_custom_order_status_bulk( $bulk_actions ) {
  
 // add_action( 'woocommerce_thankyou', 'bbloomer_thankyou_change_order_status' );
  
-function estimate_thankyou_change_order_status( $order_id ){
+function leave_thankyou_change_order_status( $order_id ){
     if( ! $order_id ) return;
     $order = wc_get_order( $order_id );
  

@@ -31,10 +31,10 @@
   jQuery(document).ready(function ($) {
 
 
-    $(document).on('click', '#estimateInsert', function (e) {
+    $(document).on('click', '#leaveInsert', function (e) {
       e.preventDefault();
       var userId = $('#userId').val();
-      var estimateName = $('#estimateName').val();
+      var leaveName = $('#leaveName').val();
       var description = $('#description').val();
       var endUserName = $('#endUserName').val();
       var endUserEmail = $('#endUserEmail').val();
@@ -43,9 +43,9 @@
       var endUserAddress = $('#endUserAddress').val();
 
       var data = {
-        'action': 'estimate_insert',
+        'action': 'leave_insert',
         'userId': userId,
-        'estimateName': estimateName,
+        'leaveName': leaveName,
         'description': description,
         'endUserName': endUserName,
         'endUserEmail': endUserEmail,
@@ -57,18 +57,18 @@
       jQuery.post(ajax_object.ajax_url, data, function (response) {
         // alert('Got this from the server: ' + response);
         if (response) {
-          //  console.log(base_url + '/estimate?estimate-id=' + response);
-          //  $('.estimateForm').fadeOut();
-          window.location = base_url + '/estimate?estimate-id=' + response;
-          // $('.estimateDetails').fadeIn();
+          //  console.log(base_url + '/leave?leave-id=' + response);
+          //  $('.leaveForm').fadeOut();
+          window.location = base_url + '/leave?leave-id=' + response;
+          // $('.leaveDetails').fadeIn();
         }
 
       });
     });
-    $(document).on('click', '#estimateEdit', function (e) {
+    $(document).on('click', '#leaveEdit', function (e) {
       e.preventDefault();
-      var estimateId = $('#estimateId').val();
-      var estimateName = $('#estimateName').val();
+      var leaveId = $('#leaveId').val();
+      var leaveName = $('#leaveName').val();
       var description = $('#description').val();
       var endUserName = $('#endUserName').val();
       var endUserEmail = $('#endUserEmail').val();
@@ -77,9 +77,9 @@
       var endUserAddress = $('#endUserAddress').val();
 
       var data = {
-        'action': 'estimate_edit',
-        'estimateId': estimateId,
-        'estimateName': estimateName,
+        'action': 'leave_edit',
+        'leaveId': leaveId,
+        'leaveName': leaveName,
         'description': description,
         'endUserName': endUserName,
         'endUserEmail': endUserEmail,
@@ -91,16 +91,16 @@
       jQuery.post(ajax_object.ajax_url, data, function (response) {
         // alert('Got this from the server: ' + response);
         if (response) {
-          //  console.log(base_url + '/estimate?estimate-id=' + response);
-          //  $('.estimateForm').fadeOut();
-          window.location = base_url + '/estimate?estimate-id=' + response;
-          // $('.estimateDetails').fadeIn();
+          //  console.log(base_url + '/leave?leave-id=' + response);
+          //  $('.leaveForm').fadeOut();
+          window.location = base_url + '/leave?leave-id=' + response;
+          // $('.leaveDetails').fadeIn();
         }
 
       });
     });
 
-    $(document).on('click', '.estimateDelete', function (e) {
+    $(document).on('click', '.leaveDelete', function (e) {
       e.preventDefault();
       // var userId = $('#userId').val(); 
       var id = $(this).attr("data-id");
@@ -108,9 +108,9 @@
       var $tr = $(this).closest('tr');
 
       var data = {
-        'action': 'estimate_delete',
+        'action': 'leave_delete',
         'nonce': nonce,
-        'estimateId': id,
+        'leaveId': id,
       };
       // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
       jQuery.post(ajax_object.ajax_url, data, function (response) {
@@ -128,14 +128,14 @@
       e.preventDefault();
       // var userId = $('#userId').val(); 
       var id = $(this).attr("data-id");
-      var estimateId = $(this).attr("data-estimateId");
+      var leaveId = $(this).attr("data-leaveId");
       // var nonce = $(this).attr("data-nonce");
       var $tr = $(this).closest('tr');
 
       var data = {
         'action': 'product_get_by_id',
         'productID': id,
-        'estimateId': estimateId,
+        'leaveId': leaveId,
       };
       // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
       jQuery.post(ajax_object.ajax_url, data, function (response) {
@@ -153,15 +153,15 @@
       // var userId = $('#userId').val(); 
       var id = $(this).attr("data-id");
       var productId = $(this).attr("data-productId");
-      var estimateId = $(this).attr("data-estimateId");
+      var leaveId = $(this).attr("data-leaveId");
       var nonce = $(this).attr("data-nonce");
       var $tr = $(this).closest('.product');
 
       var data = {
-        'action': 'estimate_product_delete',
+        'action': 'leave_product_delete',
         'nonce': nonce,
         'id': id,
-        'estimateId': estimateId,
+        'leaveId': leaveId,
         'productId': productId,
       };
       // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
@@ -199,9 +199,9 @@
         if (confirm("Are you sure?")) {
           // your deletion code
      
-        var $div = $(this).closest('.estimate-cart').find('.card-body').find('.product');
+        var $div = $(this).closest('.leave-cart').find('.card-body').find('.product');
         var data = {
-          'action': 'estimate_product_multiple_delete',
+          'action': 'leave_product_multiple_delete',
           'id': id,
         };
         // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
@@ -238,9 +238,9 @@
         alert("Please Select atleast one checkbox");
       }
       else {
-        var $div = $(this).closest('.estimate-cart').find('.card-body').find('.product');
+        var $div = $(this).closest('.leave-cart').find('.card-body').find('.product');
         var data = {
-          'action': 'estimate_product_converToCart',
+          'action': 'leave_product_converToCart',
           'id': id,
         };
         // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
@@ -257,13 +257,13 @@
     }); 
 
 
-    $('#estimate_clone').click(function (e) {
+    $('#leave_clone').click(function (e) {
       e.preventDefault(); 
 
        var id = $(this).data('id');
 
          var data = {
-          'action': 'estimate_clone',
+          'action': 'leave_clone',
           'id': id,
         };
         // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
@@ -271,7 +271,7 @@
           // alert('Got this from the server: ' + response);
           if (response) {
              // window.location.reload();
-             window.location = base_url +'/estimate?estimate-id=' + response;
+             window.location = base_url +'/leave?leave-id=' + response;
            }
 
         });
@@ -283,7 +283,7 @@
   $('#btn_export').click(function (e) {
     e.preventDefault();
 
-    var estimateId = $(this).data('id');
+    var leaveId = $(this).data('id');
 
     var id = [];
     $(':checkbox:checked').each(function (i) {
@@ -295,10 +295,10 @@
       alert("Please Select atleast one checkbox");
     }
     else {
-      var $div = $(this).closest('.estimate-cart').find('.card-body').find('.product');
+      var $div = $(this).closest('.leave-cart').find('.card-body').find('.product');
       var data = {
-        'action': 'estimate_product_Export',
-        'estimateId': estimateId,
+        'action': 'leave_product_Export',
+        'leaveId': leaveId,
         'id': id,
       };
       // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
@@ -306,7 +306,7 @@
         // alert('Got this from the server: ' + response);
         if (response) {
            // window.location.reload();
-            window.location = plugin_url +'/includes/assets/estimate.csv';
+            window.location = plugin_url +'/includes/assets/leave.csv';
          }
 
       });
@@ -316,7 +316,7 @@
   $('#btn_export_pdf').click(function (e) {
     e.preventDefault();
 
-   var estimateId = $(this).data('id');
+   var leaveId = $(this).data('id');
 
     var id = [];
     $(':checkbox:checked').each(function (i) {
@@ -328,10 +328,10 @@
       alert("Please Select atleast one checkbox");
     }
     else {
-      var $div = $(this).closest('.estimate-cart').find('.card-body').find('.product');
+      var $div = $(this).closest('.leave-cart').find('.card-body').find('.product');
       var data = {
-        'action': 'estimate_product_Export_as_Pdf',
-        'estimateId': estimateId, 
+        'action': 'leave_product_Export_as_Pdf',
+        'leaveId': leaveId, 
         'id': id,
       };
       // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
@@ -339,8 +339,8 @@
         // alert('Got this from the server: ' + response);
         if (response) {
           //  window.location.reload();
-            // window.location = plugin_url +'/includes/assets/estimate.pdf';
-            window.open(plugin_url +'/includes/assets/estimate.pdf', '_blank');
+            // window.location = plugin_url +'/includes/assets/leave.pdf';
+            window.open(plugin_url +'/includes/assets/leave.pdf', '_blank');
          }
 
       });
@@ -361,9 +361,9 @@
       alert("Please Select atleast one checkbox");
     }
     else {
-      var $div = $(this).closest('.estimate-cart').find('.card-body').find('.product');
+      var $div = $(this).closest('.leave-cart').find('.card-body').find('.product');
       var data = {
-        'action': 'estimate_product_CSVEmail',
+        'action': 'leave_product_CSVEmail',
         'id': id,
       };
       // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
@@ -504,7 +504,7 @@
     var linePrice = price * quantity;
 
     var data = {
-      'action': 'estimate_product_updateByQty',
+      'action': 'leave_product_updateByQty',
       'id': id,
       'quantity': quantity,
       'totalPrice': linePrice,

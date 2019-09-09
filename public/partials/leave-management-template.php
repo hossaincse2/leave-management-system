@@ -48,10 +48,10 @@ class PageTemplater {
 		);
 		// Add your templates to this array.
 		$this->templates = array(
-			'product-estimate-public-display.php' => 'Product Estimate Display',
-			'estimate.php' => 'Product Estimate Template',
-			'estimate_list.php' => 'Product Estimate List',
-			'estimate_edit.php' => 'Product Estimate Edit',
+			'product-leave-public-display.php' => 'Product leave Display',
+			'leave.php' => 'Product leave Template',
+			'leave_list.php' => 'Product leave List',
+			'leave_edit.php' => 'Product leave Edit',
 			'signup.php' => 'User Registration',
 		);
 	}

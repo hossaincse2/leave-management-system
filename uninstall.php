@@ -22,7 +22,7 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    product_estimate
+ * @package    product_leave
  */
 
 // If uninstall not called from WordPress, then exit.

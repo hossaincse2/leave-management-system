@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    product_estimate
- * @subpackage product_estimate/includes
+ * @package    leave_management
+ * @subpackage leave_management/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    product_estimate
- * @subpackage product_estimate/includes
+ * @package    leave_management
+ * @subpackage leave_management/includes
  * @author     Your Name <email@example.com>
  */
-class product_estimate {
+class leave_management {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class product_estimate {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      product_estimate_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      leave_management_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -44,9 +44,9 @@ class product_estimate {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $product_estimate    The string used to uniquely identify this plugin.
+	 * @var      string    $leave_management    The string used to uniquely identify this plugin.
 	 */
-	protected $product_estimate;
+	protected $leave_management;
 
 	/**
 	 * The current version of the plugin.
@@ -67,12 +67,12 @@ class product_estimate {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'product_estimate_VERSION' ) ) {
-			$this->version = product_estimate_VERSION;
+		if ( defined( 'leave_management_VERSION' ) ) {
+			$this->version = leave_management_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->product_estimate = 'product-estimate';
+		$this->leave_management = 'leave-managemente';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -86,10 +86,10 @@ class product_estimate {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - product_estimate_Loader. Orchestrates the hooks of the plugin.
-	 * - product_estimate_i18n. Defines internationalization functionality.
-	 * - product_estimate_Admin. Defines all hooks for the admin area.
-	 * - product_estimate_Public. Defines all hooks for the public side of the site.
+	 * - leave_management_Loader. Orchestrates the hooks of the plugin.
+	 * - leave_management_i18n. Defines internationalization functionality.
+	 * - leave_management_Admin. Defines all hooks for the admin area.
+	 * - leave_management_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -114,27 +114,27 @@ class product_estimate {
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-product-estimate-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-leave-management-admin.php';
 
 		/**
 		 * The class responsible for defining Settings
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/estimate_settings.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/leave-management_settings.php';
 
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-product-estimate-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-leave-management-public.php';
 
 
 		/**
 		 * The class responsible for defining Page Templete
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/product-estimate-template.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/leave-management-template.php';
 		
 		/**
 		 * The class responsible for defining Page Templete
@@ -148,41 +148,24 @@ class product_estimate {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/wp-ajax.php';
 
-		/**
-		 * The class responsible for Pdf
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/lib/dompdf/vendor/autoload.php';
-
-		/**
-		 * The class responsible for Pdf
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/lib/PHPExcel-1.8/vendor/autoload.php';
-
-		/**
-		 * The class responsible for Pdf
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/lib/PHPExcel-1.8/Classes/PHPExcel.php';
-
+		 
 
 		/**
 		 * The class responsible for defining ShortCode
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/shortcode/estimate_list.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/shortcode/leave_list.php';
 
 		
 
-		$this->loader = new product_estimate_Loader();
+		$this->loader = new leave_management_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the product_estimate_i18n class in order to set the domain and to register the hook
+	 * Uses the leave_management_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -190,7 +173,7 @@ class product_estimate {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new product_estimate_i18n();
+		$plugin_i18n = new leave_management_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -205,20 +188,20 @@ class product_estimate {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new product_estimate_Admin( $this->get_product_estimate(), $this->get_version() );
+		$plugin_admin = new Leave_Management_Admin( $this->get_leave_management(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'estimate_register_my_custom_menu_page' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'leave_register_my_custom_menu_page' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'settings_custome_fileld_admin_init' );
 		$this->loader->add_action( 'login_enqueue_scripts', $plugin_admin, 'my_login_logo' );
 		$this->loader->add_action( 'admin_footer_text', $plugin_admin, 'demo_footer_filter' );
 		$this->loader->add_action( 'woocommerce_login_redirect', $plugin_admin, 'wc_custom_user_redirect',10, 2 );
 		$this->loader->add_action( 'admin_bar_menu', $plugin_admin, 'remove_wp_logo',999 );
-		$this->loader->add_action( 'woocommerce_register_shop_order_post_statuses', $plugin_admin, 'estimate_register_custom_order_status',999 );
-		$this->loader->add_action( 'wc_order_statuses', $plugin_admin, 'estimate_show_custom_order_status',999 );
-		$this->loader->add_action( 'bulk_actions-edit-shop_order', $plugin_admin, 'estimate_get_custom_order_status_bulk',999 );
-		$this->loader->add_action( 'woocommerce_thankyou', $plugin_admin, 'estimate_thankyou_change_order_status',999 );
+		$this->loader->add_action( 'woocommerce_register_shop_order_post_statuses', $plugin_admin, 'leave_register_custom_order_status',999 );
+		$this->loader->add_action( 'wc_order_statuses', $plugin_admin, 'leave_show_custom_order_status',999 );
+		$this->loader->add_action( 'bulk_actions-edit-shop_order', $plugin_admin, 'leave_get_custom_order_status_bulk',999 );
+		$this->loader->add_action( 'woocommerce_thankyou', $plugin_admin, 'leave_thankyou_change_order_status',999 );
  
 	}
 
@@ -231,7 +214,7 @@ class product_estimate {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new product_estimate_Public( $this->get_product_estimate(), $this->get_version() );
+		$plugin_public = new Leave_Management_Public( $this->get_leave_management(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -239,9 +222,9 @@ class product_estimate {
 		$this->loader->add_action( 'sensore_list', $plugin_public, 'get_sensore_list' );
 		$this->loader->add_action( 'wp_head', $plugin_public, 'baseUrl' );
 		$this->loader->add_action( 'wp_head', $plugin_public, 'pluginUrl' );
-		$this->loader->add_action( 'wp_head', $plugin_public, 'estimate_user_nav_visibility' );
-		$this->loader->add_action( 'admin_init', $plugin_public, 'estimate_redirect_users_by_role' );
-		$this->loader->add_action( 'init', $plugin_public, 'estimate_csv' );
+		$this->loader->add_action( 'wp_head', $plugin_public, 'leave_user_nav_visibility' );
+		$this->loader->add_action( 'admin_init', $plugin_public, 'leave_redirect_users_by_role' );
+		$this->loader->add_action( 'init', $plugin_public, 'leave_csv' );
 
  	}
 
@@ -261,15 +244,15 @@ class product_estimate {
 	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_product_estimate() {
-		return $this->product_estimate;
+	public function get_leave_management() {
+		return $this->leave_management;
 	}
 
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    product_estimate_Loader    Orchestrates the hooks of the plugin.
+	 * @return    leave_management_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

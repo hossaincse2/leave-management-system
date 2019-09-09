@@ -15,7 +15,7 @@
       $this->db = $wpdb;                                          //Can't use global on it's own within a class so lets assign it to local object.
       $this->table_name = $table_n;                               
       $this->separator = $sep;
-      $this->addQuery = "Where estimate_id = ". $id ." GROUP BY product_id";
+      $this->addQuery = "Where leave_id = ". $id ." GROUP BY product_id";
   
       $generatedDate = date('d-m-Y His');                         //Date will be part of file name. I dont like to see ...(23).csv downloaded
   
@@ -64,6 +64,6 @@
     }
   }
   if(isset($_GET['download_csv'])){  //When we must do this
-    $id = isset($_GET['estimate-id']) ?  $_GET['estimate-id'] : '';
-    $exportCSV = new export_table_to_csv('estimate_products',',','report',$id);              //Make your changes on these lines
+    $id = isset($_GET['leave-id']) ?  $_GET['leave-id'] : '';
+    $exportCSV = new export_table_to_csv('leave_products',',','report',$id);              //Make your changes on these lines
   }
